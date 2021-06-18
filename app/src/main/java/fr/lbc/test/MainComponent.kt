@@ -1,6 +1,8 @@
 package fr.lbc.test
 
 import dagger.Component
+import fr.lbc.test.album.injection.AlbumComponent
+import fr.lbc.test.album.injection.AlbumModule
 import javax.inject.Singleton
 
 @Singleton
@@ -14,5 +16,6 @@ import javax.inject.Singleton
 interface MainComponent {
 
     fun inject(application: LBCApplication)
+    fun plus(albumModule: AlbumModule): AlbumComponent
 
 }
