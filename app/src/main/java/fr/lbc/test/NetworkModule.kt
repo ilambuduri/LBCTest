@@ -1,11 +1,14 @@
 package fr.lbc.test
 
 import android.content.Context
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -36,6 +39,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .baseUrl("https://static.leboncoin.fr/")
             .client(client.build())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 }

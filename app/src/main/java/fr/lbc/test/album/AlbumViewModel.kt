@@ -1,13 +1,24 @@
 package fr.lbc.test.album
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fr.lbc.test.utils.SingleLiveEvent
 
 class AlbumViewModel : ViewModel() {
 
-    val loadMessage: SingleLiveEvent<String> = SingleLiveEvent()
+    val loadingResult: MutableLiveData<AlbumResult> = MutableLiveData()
 
-    fun showAlbums() {
-        loadMessage.postValue("LOADED")
+    fun showAlbums(groupedImageList: List<Pair<Int, List<String>>>) {
+        loadingResult.postValue(AlbumResult.LoadedAlbums(groupedImageList))
+    }
+
+    fun showError() {
+        loadingResult.postValue(AlbumResult.LoadingError)
+    }
+
+    sealed class AlbumResult {
+        object LoadingError : AlbumResult()
+        data class LoadedAlbums(
+            val groupedImageList: List<Pair<Int, List<String>>>
+        ) : AlbumResult()
     }
 }

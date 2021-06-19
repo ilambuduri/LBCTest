@@ -1,4 +1,4 @@
-package fr.lbc.test.album.repository
+package fr.lbc.test.album.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

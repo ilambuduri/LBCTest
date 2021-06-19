@@ -2,14 +2,15 @@ package fr.lbc.test
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import fr.lbc.test.album.repository.AlbumDAO
-import fr.lbc.test.album.repository.ImageDb
+import fr.lbc.test.album.data.ImageDao
+import fr.lbc.test.album.data.ImageDb
 
 @Database(
     entities = [
         ImageDb::class
     ],
-    version = 1
+    version = 2,
+    exportSchema = false
 )
 abstract class LBCDatabase : RoomDatabase() {
 
@@ -17,5 +18,5 @@ abstract class LBCDatabase : RoomDatabase() {
         const val FILE_NAME = "lbc-test"
     }
 
-    abstract fun albumDAO(): AlbumDAO
+    abstract fun imageDao(): ImageDao
 }

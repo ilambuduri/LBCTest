@@ -37,8 +37,8 @@ class AlbumFragment : Fragment() {
 
         controller.loadAlbums()
 
-        viewModel.loadMessage.observe(this, Observer { message ->
-            binding.loadMessageTextView.text = message
+        viewModel.loadingResult.observe(viewLifecycleOwner, Observer { message ->
+
         })
     }
 }
