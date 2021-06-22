@@ -7,18 +7,27 @@ class AlbumViewModel : ViewModel() {
 
     val loadingResult: MutableLiveData<AlbumResult> = MutableLiveData()
 
-    fun showAlbums(groupedImageList: List<Pair<Int, List<String>>>) {
-        loadingResult.postValue(AlbumResult.LoadedAlbums(groupedImageList))
+    fun presentAlbums(groupedImageList: List<Pair<Int, List<String>>>) {
+        loadingResult.postValue(AlbumResult.LoadedAlbums(
+            groupedImageList.map { album ->
+                AlbumUI(album.first, album.second)
+            }
+        ))
     }
 
-    fun showError() {
+    fun presentError() {
         loadingResult.postValue(AlbumResult.LoadingError)
     }
 
     sealed class AlbumResult {
         object LoadingError : AlbumResult()
         data class LoadedAlbums(
-            val groupedImageList: List<Pair<Int, List<String>>>
+            val groupedImageList: List<AlbumUI>
         ) : AlbumResult()
     }
+
+    data class AlbumUI(
+        val albumId: Int,
+        val previewImageList: List<String>
+    )
 }

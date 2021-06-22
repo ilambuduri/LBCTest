@@ -1,6 +1,7 @@
 package fr.lbc.test.album.data
 
 import fr.lbc.test.album.domain.Image
+import java.io.IOException
 
 class ImageRemoteDataSource(
     private val service: ImageService,
@@ -8,8 +9,12 @@ class ImageRemoteDataSource(
 ) {
 
     fun loadImageList(): List<Image>? {
-        return service.getImages().execute().body()?.map { imageJson ->
-            converter.buildImage(imageJson)
+        return try {
+            service.getImages().execute().body()?.map { imageJson ->
+                converter.buildImage(imageJson)
+            }
+        } catch (ex: IOException) {
+            null
         }
     }
 }

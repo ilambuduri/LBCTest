@@ -11,17 +11,15 @@ class AlbumInteractor(
 ) {
 
     fun loadAlbums() {
-        val loadResult = repository.loadAlbumList()
-
-        when (loadResult) {
-            ImageLoadingError -> viewModel.showError()
+        when (val loadResult = repository.loadAlbumList()) {
+            ImageLoadingError -> viewModel.presentError()
             is ImagesLoaded -> {
                 val groupedImageList = loadResult.imageList
                     .groupBy(Image::albumId)
-                    .map {
+                    .mapNotNull {
                         it.key to it.value.map(Image::thumbnailUrl)
                     }
-                viewModel.showAlbums(groupedImageList)
+                viewModel.presentAlbums(groupedImageList)
             }
         }
     }

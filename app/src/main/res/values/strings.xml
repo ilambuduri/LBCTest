@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LBCTest</string>
+    <string name="retry">Retry</string>
 </resources>

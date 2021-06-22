@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface ImageService {
 
-    @GET("img/shared/technical-test.json")
+    @GET("img/shared/technicaqsdql-test.json")
     fun getImages(): Call<List<ImageJson>>
 }

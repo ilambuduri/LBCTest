@@ -12,7 +12,6 @@ class AlbumRepository(
         return if (localImageList.isNotEmpty()) {
             ImageLoadingResult.ImagesLoaded(localImageList)
         } else {
-
             val remoteImageList = remoteDataSource.loadImageList()
             remoteImageList?.let { imageList ->
                 localDataSource.saveImageList(imageList)
