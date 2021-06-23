@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import fr.lbc.test.LBCApplication
 import fr.lbc.test.album.AlbumViewModel.AlbumResult.LoadedAlbums
 import fr.lbc.test.album.AlbumViewModel.AlbumResult.LoadingError
 import fr.lbc.test.album.injection.AlbumModule
 import fr.lbc.test.databinding.FragmentAlbumBinding
+import fr.lbc.test.utils.AutoFitGridLayoutManager
 import javax.inject.Inject
 
 class AlbumFragment : Fragment(), AlbumListener {
@@ -44,7 +44,7 @@ class AlbumFragment : Fragment(), AlbumListener {
             .plus(AlbumModule(this))
             .inject(this)
 
-        binding.albumRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.albumRecyclerView.layoutManager = AutoFitGridLayoutManager(requireContext(), 300)
         binding.albumRecyclerView.adapter = AlbumAdapter(this)
         binding.albumViewFlipper.displayedChild = DISPLAY_LOADER
         controller.loadAlbums()
