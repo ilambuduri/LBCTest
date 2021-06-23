@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.only
 import com.nhaarman.mockitokotlin2.then
 import fr.lbc.test.album.AlbumViewModel
-import fr.lbc.test.album.data.AlbumRepository
+import fr.lbc.test.album.data.ImageRepository
 import fr.lbc.test.album.data.ImageLoadingResult
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class AlbumInteractorTest {
 
-    @Mock private lateinit var repository: AlbumRepository
+    @Mock private lateinit var repository: ImageRepository
     @Mock private lateinit var viewModel: AlbumViewModel
     @InjectMocks private lateinit var interactor: AlbumInteractor
 

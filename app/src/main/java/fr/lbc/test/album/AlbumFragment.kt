@@ -5,8 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import fr.lbc.test.LBCApplication
+import fr.lbc.test.R
 import fr.lbc.test.album.AlbumViewModel.AlbumResult.LoadedAlbums
 import fr.lbc.test.album.AlbumViewModel.AlbumResult.LoadingError
 import fr.lbc.test.album.injection.AlbumModule
@@ -52,12 +56,17 @@ class AlbumFragment : Fragment(), AlbumListener {
         startObserving()
 
         binding.errorButton.setOnClickListener {
+            binding.albumViewFlipper.displayedChild = DISPLAY_LOADER
             controller.loadAlbums()
         }
     }
 
     override fun onAlbumSelected(albumId: Int) {
         Log.println(Log.DEBUG, "Album", "Album #$albumId selected")
+        findNavController().navigate(
+            R.id.action_albumFragment_to_detailFragment,
+            bundleOf("albumId" to albumId)
+        )
     }
 
     private fun startObserving() {

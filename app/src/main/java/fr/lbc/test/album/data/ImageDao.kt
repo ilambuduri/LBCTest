@@ -21,4 +21,7 @@ interface ImageDao {
     """
     )
     fun getAlbumWithPreviewImages(): List<ImageDb>
+
+    @Query("SELECT * FROM ImageDb WHERE albumId = :albumId")
+    fun getAlbumImages(albumId: Int): List<ImageDb>
 }

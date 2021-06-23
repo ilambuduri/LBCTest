@@ -2,7 +2,7 @@ package fr.lbc.test.album.data
 
 import fr.lbc.test.album.domain.Image
 
-class AlbumRepository(
+class ImageRepository(
     private val localDataSource: ImageLocalDataSource,
     private val remoteDataSource: ImageRemoteDataSource
 ) {
@@ -17,6 +17,15 @@ class AlbumRepository(
                 localDataSource.saveImageList(imageList)
                 ImageLoadingResult.ImagesLoaded(imageList)
             } ?: ImageLoadingResult.ImageLoadingError
+        }
+    }
+
+    fun loadAlbumImages(albumId: Int): ImageLoadingResult {
+        val imageList = localDataSource.loadAlbumImages(albumId)
+        return if (imageList.isNotEmpty()) {
+            ImageLoadingResult.ImagesLoaded(imageList)
+        } else {
+            ImageLoadingResult.ImageLoadingError
         }
     }
 }

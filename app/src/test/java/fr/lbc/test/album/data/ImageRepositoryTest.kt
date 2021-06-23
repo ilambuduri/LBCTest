@@ -12,11 +12,11 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class AlbumRepositoryTest {
+class ImageRepositoryTest {
 
     @Mock private lateinit var localDataSource: ImageLocalDataSource
     @Mock private lateinit var remoteDataSource: ImageRemoteDataSource
-    @InjectMocks private lateinit var repository: AlbumRepository
+    @InjectMocks private lateinit var repository: ImageRepository
 
     @Test
     fun `loadAlbumList local datasource will return emptyList`() {

@@ -20,5 +20,9 @@
         android:id="@+id/detailFragment"
         android:name="fr.lbc.test.detail.DetailFragment"
         android:label="Blank"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -19,4 +19,10 @@ class ImageLocalDataSource(
         }
         imageDao.saveImageList(imageDbList)
     }
+
+    fun loadAlbumImages(albumId: Int): List<Image> {
+        return imageDao.getAlbumImages(albumId).map { imageDb ->
+            converter.buildImage(imageDb)
+        }
+    }
 }
