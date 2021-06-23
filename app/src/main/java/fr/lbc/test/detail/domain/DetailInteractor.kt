@@ -10,8 +10,7 @@ class DetailInteractor(
 ) {
 
     fun loadAlbumDetail(albumId: Int) {
-        val imageResult = repository.loadAlbumImages(albumId)
-        when (imageResult) {
+        when (val imageResult = repository.loadAlbumImages(albumId)) {
             ImageLoadingResult.ImageLoadingError -> viewModel.presentError()
             is ImageLoadingResult.ImagesLoaded -> viewModel.presentImages(imageResult.imageList)
         }

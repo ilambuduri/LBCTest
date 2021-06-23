@@ -112,4 +112,46 @@ class ImageLocalDataSourceTest {
         // Then
         then(dao).should(only()).saveImageList(listOf(convertedImage1, convertedImage2))
     }
+
+    @Test
+    fun `loadAlbumImages will convert and return images`() {
+        // Given
+        val image1 = ImageDb(
+            id = 1,
+            albumId = 1,
+            title = "image1",
+            url = "url1",
+            thumbnailUrl = "thumbnail1"
+        )
+        val image2 = ImageDb(
+            id = 2,
+            albumId = 2,
+            title = "image2",
+            url = "url2",
+            thumbnailUrl = "thumbnail2"
+        )
+        val convertedImage1 = Image(
+            id = 1,
+            albumId = 1,
+            title = "image1",
+            url = "url1",
+            thumbnailUrl = "thumbnail1"
+        )
+        val convertedImage2 = Image(
+            id = 2,
+            albumId = 2,
+            title = "image2",
+            url = "url2",
+            thumbnailUrl = "thumbnail2"
+        )
+        given(dao.getAlbumImages(1)).willReturn(listOf(image1, image2))
+        given(converter.buildImage(image1)).willReturn(convertedImage1)
+        given(converter.buildImage(image2)).willReturn(convertedImage2)
+
+        // When
+        val result = dataSource.loadAlbumImages(1)
+
+        // Then
+        assertThat(result).isEqualTo(listOf(convertedImage1, convertedImage2))
+    }
 }
