@@ -6,7 +6,7 @@ The main goal is to display a list of objects in this format
 
 ```
 {
-	"albumId": 1,
+    "albumId": 1,
     "id": 1,
     "title": "accusamus beatae ad facilis cum similique qui sunt",
     "url": "https://via.placeholder.com/600/92c952",
